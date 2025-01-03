@@ -12,24 +12,21 @@ interface Params {
   id: string;
 }
 
-
-interface HomeProps {
+interface ProductPageProps {
   params: Params;
 }
 
+const ProductPage: NextPage<ProductPageProps> = async ({ params }) => {
+  const detail = await Getusers();
+  const { id } = params;
 
-const Home: NextPage<HomeProps> = async ({ params }) => {
-  
-  const detail = await Getusers(); 
-  const { id } = params;  
+  const post = detail.find((item: any) => item.id === id);
 
-  
-  const post = detail.find((post: any) => post.id === id);
-
+ 
   if (!post) {
     return (
       <div>
-        <h1>Post not found</h1>
+        <h1>Product not found</h1>
         <button className="bg-red-500 px-2 py-1 text-white hover:bg-red-400 ml-[510px] mt-6">
           <Link href="/">Go Back</Link>
         </button>
