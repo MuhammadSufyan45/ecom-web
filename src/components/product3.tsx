@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Data } from "../data/data";
 import Link from "next/link";
 
 async function Getusers(){
