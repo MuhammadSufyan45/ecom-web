@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { NextPage } from "next";
 
 async function Getusers(){
   const res = await fetch("http://localhost:3000/api/detail");
@@ -7,11 +8,23 @@ async function Getusers(){
   return data;
 }
 
-export default async function Home({ params }: { params: { id: string } }) {
+interface Params {
+  id: string;
+}
 
-  const detail = await Getusers();
-  const { id } = params;
-  const post = detail.find((post:any) => post.id === id);
+
+interface HomeProps {
+  params: Params;
+}
+
+
+const Home: NextPage<HomeProps> = async ({ params }) => {
+  
+  const detail = await Getusers(); 
+  const { id } = params;  
+
+  
+  const post = detail.find((post: any) => post.id === id);
 
   if (!post) {
     return (
@@ -23,6 +36,7 @@ export default async function Home({ params }: { params: { id: string } }) {
       </div>
     );
   }
+
   return (
     <div className="flex flex-col items-center">
       <section className="py-8 bg-white md:py-16 antialiased">
