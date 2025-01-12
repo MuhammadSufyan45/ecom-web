@@ -1,6 +1,7 @@
 import "./globals.css";
 import "tailwindcss/tailwind.css";
 import Navbar from "@/components/navbar";
+import ReduxProvider from "@/components/reduxprovider";
 
 export const metadata = {
   title: "Create Next App",
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <ReduxProvider>
         <Navbar/>
         {children}
+      </ReduxProvider>
       </body>
     </html>
   );
